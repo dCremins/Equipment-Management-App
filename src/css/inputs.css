@@ -1,0 +1,80 @@
+input,
+button,
+select {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: .25rem;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  color: #464a4c;
+  display: block;
+  font-size:.9em;
+  line-height: 1.25;
+  margin: 10px 0;
+  padding: .5rem .75rem;
+  transition: border-color ease-in-out .15s,
+  box-shadow ease-in-out .15s,
+  -webkit-box-shadow ease-in-out .15s;
+  min-width: 350px;
+}
+
+input[disabled],
+button[disabled],
+select[disabled] {
+  background-color: #dfe1e2;
+  color: #989da0;
+  cursor: not-allowed;
+}
+
+input::placeholder,
+button::placeholder,
+select::placeholder {
+  color: #babdbf;
+}
+
+.errors {
+  align-items: center;
+  color: #FEC6AB;
+  display: flex;
+}
+
+.inputText {
+  align-items: center;
+  display: flex;
+  height: 25px;
+}
+
+.material-icons {
+  margin: 0 5px;
+}
+
+.SelectChange {
+  height: 35px;
+  min-width: 380px;
+}
+
+.itemForm {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.inputLabel {
+  color: #F9F3E6;
+}
+
+.inputFields {
+  margin: 10px;
+}
+
+.inputInfo {
+  display: flex;
+  width: 100%;
+}
+
+.inputInfo p {
+  flex: 1;
+}
+
+.buttonGroup {
+  display: flex;
+  width: 100%;
+}

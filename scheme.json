@@ -1,0 +1,14 @@
+{
+  "equipment" : {
+    "computers" : {
+      "ITRE123": {
+        "id": "ITRE123"
+      }
+    },
+    "cords" : {
+      "CRD123": {
+        "id": "CRD123"
+      }
+    }
+  }
+}

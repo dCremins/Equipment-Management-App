@@ -1,0 +1,59 @@
+.EquipmentList {
+  box-sizing: border-box;
+  margin: 20px 0;
+  padding: 20px 0;
+  width: 100%;
+}
+
+.list {
+  margin-bottom: 30px;
+}
+
+.edit {
+  margin: 5px;
+  min-width: auto;
+  padding: 0;
+  width: 10%;
+}
+
+.edit-link {
+  display: block;
+  height: 100%;
+  padding: 15px 20px;
+  text-decoration: none;
+}
+
+.Computer {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ComputerHeader {
+  align-items: center;
+  background-color: #E8AA8C;
+  box-sizing: border-box;
+  color: #5E616A;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.property {
+  box-sizing: border-box;
+  min-width: 100px;
+  margin: 10px 5px;
+  padding: 10px 5px;
+  text-align: center;
+  width: 10%;
+}
+
+.property-button {
+  width: 7%;
+}
+
+.property-staff {
+  width: 16%;
+}

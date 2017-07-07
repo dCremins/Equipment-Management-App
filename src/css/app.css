@@ -1,0 +1,69 @@
+.nav {
+  background-color: #5E616A;
+  color: #F9F3E6;
+  padding: 30px 20px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 13;
+}
+
+.pageLink {
+  height: 60px;
+}
+
+.pageLink a {
+  color: #F9F3E6;
+  cursor: pointer;
+  display: block;
+  font-size: 4em;
+  padding: 0;
+  position: absolute;
+  right: 20px;
+  text-decoration: none;
+  top: -10px;
+}
+
+.pageLink a:hover {
+  color: #E8AA8C;
+}
+
+.addLink a {
+  transform: rotate(45deg);
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  box-sizing: border-box;
+  height:100%;
+  padding: 20px;
+  width: 100%;
+}
+
+
+.example-enter .addLink a,
+.example-leave .mainLink a {
+  color: #E8AA8C;
+  transform: rotate(0deg);
+}
+
+.example-enter.example-enter-active .addLink a,
+.example-leave.example-leave-active .mainLink a {
+  transform: rotate(45deg);
+  transition: all .1s ease;
+}
+
+.example-leave .addLink a,
+.example-enter .mainLink a {
+  color: #E8AA8C;
+  transform: rotate(45deg);
+}
+
+.example-leave.example-leave-active .addLink a,
+.example-enter.example-enter-active .mainLink a {
+  transform: rotate(0deg);
+  transition: all .1s ease;
+}

@@ -1,0 +1,68 @@
+
+.mainContainer {
+  padding: 20px 30px;
+  z-index: 0;
+}
+
+.searchContainer {
+  display: flex;
+  margin-top: 10px;
+  width: 50%;
+  min-width: 200px;
+}
+
+.searchInput {
+  flex: 1;
+  min-height: 35px;
+  min-width: 100px;
+}
+
+.search {
+  min-width: 75px;
+}
+
+.tooltip {
+  position: absolute;
+  top: 52px;
+  z-index: 15;
+  color: #F9F3E6;
+  right: 5px;
+  background-color: #E8AA8C;
+  border-radius: 5px;
+  padding: 7px;
+}
+
+.pageLink .tooltip {
+  display: none;
+}
+
+.pageLink:hover .tooltip {
+  display: block;
+}
+
+
+span[aria-hidden="true"] {
+  display:none;
+}
+
+span[aria-hidden="false"] {
+  display:block;
+}
+
+.sa-button-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  margin: 0 auto;
+  width: 50%;
+}
+
+.sa-button-container button,
+.sa-button-container .sa-confirm-button-container {
+  width: 40%;
+  min-width: 20%;
+}
+
+.sa-confirm-button-container button {
+  min-width: 100%;
+}
