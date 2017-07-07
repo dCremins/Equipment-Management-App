@@ -50,6 +50,7 @@ class Cord extends Component {
       "borrowed": this.props.item.borrowed,
       "returned": this.props.item.returned,
       "last_staff": this.props.item.last_staff,
+      "bought": this.props.item.bought,
       "id": this.props.item.id,
       "staff": this.props.item.staff,
       "room": this.props.item.room,
@@ -122,6 +123,12 @@ class Cord extends Component {
           component={renderField}
           name="price"
           placeholder="Price"
+        />
+        <Field
+          type="text"
+          component={renderField}
+          name="bought"
+          placeholder="Date Purchased"
         />
         <Field
           type="text"

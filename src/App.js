@@ -21,15 +21,15 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-      <Router history={history}>
+      <Router history={history} onUpdate={() => window.scrollTo(0, 0)}>
           <div className="appContainer">
           <div className="nav">
           </div>
             <Route render={({ location }) => (
               <CSSTransitionGroup
                 transitionName="example"
-                transitionEnterTimeout={1000}
-                transitionLeaveTimeout={1000}>
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={500}>
                 <Route location={location} key={location.key}>
                   <Switch>
                     <Route exact path="/" component={Main} />

@@ -1,34 +1,43 @@
 .addContainer {
-  background-color: #5E616A;
+  background-color: #3f758f;
   height: 100%;
   padding: 20px 30px;
   width: 100%;
-  z-index:10;
+  z-index:15;
 }
 
-.pageLink a {
-  z-index: 15;
+.AddEquipment {
+  position: absolute;
+  z-index:15;
+}
+
+.tooltip {
+  position: absolute;
+  top: 52px;
+  z-index: 30;
 }
 
 .addTitle {
   margin-left: 10px;
-  color: #F9F3E6;
+  color: #fff;
 }
 
+/** Animations **/
+
 .example-enter .addContainer {
-  top: -150%;
+  margin-top: -100%;
 }
 
 .example-enter.example-enter-active .addContainer {
-  top:70px;
-  transition: all .3s ease;
+  margin-top: 0;
+  transition: all .5s ease;
 }
 
 .example-leave .addContainer {
-  top:70px;
+  margin-top: 0;
 }
 
 .example-leave.example-leave-active .addContainer {
-  top: -250%;
-  transition: all .3s ease;
+  margin-top: -100%;
+  transition: all .5s ease;
 }

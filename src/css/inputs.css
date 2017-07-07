@@ -17,6 +17,17 @@ select {
   min-width: 350px;
 }
 
+button {
+  background-color: #6fa4bf;
+  border: none;
+  color: #fff;
+}
+
+button:hover {
+  background-color: #ffe277;
+  color: #000;
+}
+
 input[disabled],
 button[disabled],
 select[disabled] {
@@ -31,9 +42,23 @@ select::placeholder {
   color: #babdbf;
 }
 
+.checkboxInput {
+  align-items: center;
+  display: flex;
+  min-width: 50px;
+}
+
+.checkboxInput p {
+  margin-right: 10px;
+}
+
+.checkboxInput input[type="checkbox"] {
+  margin: 15px 20px 10px 0;
+}
+
 .errors {
   align-items: center;
-  color: #FEC6AB;
+  color: #ffe277;
   display: flex;
 }
 
@@ -58,7 +83,7 @@ select::placeholder {
 }
 
 .inputLabel {
-  color: #F9F3E6;
+  color: #fff;
 }
 
 .inputFields {

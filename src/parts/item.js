@@ -15,7 +15,7 @@ class Item extends Component {
 
   render() {
     var available
-    if (this.props.borrowed === '' || this.props.borrowed === undefined || this.props.borrowed === null) {
+    if (this.props.staff === '' || this.props.staff === undefined || this.props.staff === null) {
       available = <button className="remove property property-button" onClick={this.borrowItem}>Borrow</button>
     } else {
       available = <button className="remove property property-button" onClick={this.returnItem}>Return</button>

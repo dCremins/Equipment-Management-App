@@ -48,6 +48,8 @@ class Computer extends Component {
       "borrowed": this.props.item.borrowed,
       "returned": this.props.item.returned,
       "last_staff": this.props.item.last_staff,
+      "bought": this.props.item.bought,
+      "warranty": this.props.item.warranty,
       "staff": this.props.item.staff,
       "id": this.props.item.id,
       "room": this.props.item.room,
@@ -62,6 +64,7 @@ class Computer extends Component {
       "mac": this.props.item.mac,
       "login": this.props.item.login,
       "cams": this.props.item.cams,
+      "maintenance": this.props.item.maintenance,
       "notes": this.props.item.notes
     };
 
@@ -117,20 +120,20 @@ class Computer extends Component {
         <Field
           type="text"
           component={renderField}
-          name="cpu"
-          placeholder="CPU"
+          name="serial"
+          placeholder="Serial Number"
         />
         <Field
           type="text"
           component={renderField}
-          name="os"
-          placeholder="System OS"
+          name="mac"
+          placeholder="MAC Address"
         />
         <Field
           type="text"
           component={renderField}
-          name="hd"
-          placeholder="Hard Drive Size"
+          name="cams"
+          placeholder="CAMS"
         />
         <Field
           type="text"
@@ -153,14 +156,20 @@ class Computer extends Component {
         <Field
           type="text"
           component={renderField}
-          name="serial"
-          placeholder="Serial Number"
+          name="cpu"
+          placeholder="CPU"
         />
         <Field
           type="text"
           component={renderField}
-          name="mac"
-          placeholder="MAC Address"
+          name="os"
+          placeholder="System OS"
+        />
+        <Field
+          type="text"
+          component={renderField}
+          name="hd"
+          placeholder="Hard Drive Size"
         />
         <Field
           type="text"
@@ -171,8 +180,20 @@ class Computer extends Component {
         <Field
           type="text"
           component={renderField}
-          name="cams"
-          placeholder="CAMS"
+          name="bought"
+          placeholder="Date Purchased"
+        />
+        <Field
+          type="text"
+          component={renderField}
+          name="warranty"
+          placeholder="Warranty Expiration"
+        />
+        <Field
+          type="text"
+          component={renderField}
+          name="Maintenance"
+          placeholder="Last Maintenance Date"
         />
         <Field
           type="textarea"

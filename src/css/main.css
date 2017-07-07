@@ -3,33 +3,32 @@
   padding: 20px 30px;
   z-index: 0;
 }
+.mainPage {
+  position: absolute;
+}
+
+.EquipmentList {
+  z-index: 1;
+}
 
 .searchContainer {
   display: flex;
-  margin-top: 10px;
-  width: 50%;
-  min-width: 200px;
 }
 
 .searchInput {
-  flex: 1;
-  min-height: 35px;
-  min-width: 100px;
-}
-
-.search {
-  min-width: 75px;
+  margin-right: 20px;
+  min-width: 50px;
 }
 
 .tooltip {
+  background-color: #a0d5f2;
+  border-radius: 5px;
+  color: #000;
+  right: 5px;
+  padding: 7px;
   position: absolute;
   top: 52px;
-  z-index: 15;
-  color: #F9F3E6;
-  right: 5px;
-  background-color: #E8AA8C;
-  border-radius: 5px;
-  padding: 7px;
+  z-index: 30;
 }
 
 .pageLink .tooltip {
@@ -51,10 +50,8 @@ span[aria-hidden="false"] {
 
 .sa-button-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 20px;
-  margin: 0 auto;
-  width: 50%;
 }
 
 .sa-button-container button,
@@ -65,4 +62,23 @@ span[aria-hidden="false"] {
 
 .sa-confirm-button-container button {
   min-width: 100%;
+}
+
+/** Animations **/
+.example-enter .mainContainer {
+  z-index: 0;
+}
+
+.example-enter.example-enter-active .mainContainer {
+  z-index: 1;
+  transition: all 5s ease;
+}
+
+.example-leave .mainContainer {
+  margin-top: 0;
+}
+
+.example-leave.example-leave-active .mainContainer {
+  margin-top: 65%;
+  transition: all .5s ease;
 }

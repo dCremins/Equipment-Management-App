@@ -32,9 +32,9 @@
 
 .ComputerHeader {
   align-items: center;
-  background-color: #E8AA8C;
+  background-color: #6fa4bf;
   box-sizing: border-box;
-  color: #5E616A;
+  color: #fff;
   display: flex;
   justify-content: space-between;
   font-weight: bold;
@@ -48,6 +48,10 @@
   padding: 10px 5px;
   text-align: center;
   width: 10%;
+}
+
+.property-failure {
+  width: 25%;
 }
 
 .property-button {

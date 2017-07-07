@@ -23,15 +23,75 @@ class List extends Component {
       show: false,
       id: '',
       type: '',
+      kind: '',
+      filter: '',
+      staff_filter: false,
       change: null
     }
     this.popUp = this.popUp.bind(this)
     this.editItem = this.editItem.bind(this)
+    this.handleUpdate = this.handleUpdate.bind(this)
+    this.clearFilters = this.clearFilters.bind(this)
+  }
+
+  handleUpdate(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  clearFilters() {
+    this.setState({
+      type: '',
+      filter: '',
+      staff_filter: false
+    });
   }
 
   render() {
     return (
       <div className="EquipmentList main">
+
+        <div className="searchContainer">
+          <select className="searchInput"
+            name="type"
+            onChange={this.handleUpdate}
+            value={this.state.type}>
+            <option value="">All Equipment</option>
+            <option value="computer">Computers</option>
+            <option value="cord">Cords</option>
+          </select>
+
+          <input
+          type="text"
+          name="filter"
+          className="searchInput"
+          placeholder="Filter by ID Number"
+          onChange={this.handleUpdate}
+          value={this.state.filter}
+          />
+
+        <label className="checkboxInput">
+          <p className="searchInput">Filter by Availablity:</p>
+          <input
+          type="checkbox"
+          name="staff_filter"
+          className="searchInput"
+          label="Filter by Availablity"
+          onChange={this.handleUpdate}
+          checked={this.state.staff_filter}
+          /></label>
+
+          <button
+            className="searchInput"
+            onClick={this.clearFilters}>Clear Filters
+          </button>
+        </div>
+
         <SweetAlert
           show={this.state.show}
           key="alert"
@@ -46,28 +106,33 @@ class List extends Component {
               swal.showInputError('You need to write something!');
               return;
             } else {
-              this.borrowItem(this.state.id, inputValue)
+              this.borrowItem(this.state.id, inputValue, this.state.kind)
             }
           }}
           onCancel={() => {
            this.setState({ show: false });
          }}
         />
-        <h2>Computers</h2>
-        {this.listComputers()}
-        <h2>Cords</h2>
-        {this.listCords()}
+        {((this.state.type === 'computer' || this.state.type === '') && <div><h2>Computers</h2>{this.listComputers()}</div>)}
+        {((this.state.type === 'cord' || this.state.type === '') && <div><h2>Cords</h2>{this.listCords()}</div>)}
+
       </div>
     )
   }
 
   listComputers() {
     const { computer } = this.props
-    const computerList = !isLoaded(computer)
+    var computerList = !isLoaded(computer)
       ? 'Loading'
       : (isEmpty(computer))
-        ? 'Computer list is empty'
-        : Object.keys(computer).map((key) => (
+        ? 'No Computers Meet Your Criteria'
+        : Object.keys(computer).filter((key) => (
+          this.state.filter === '' || (key.toString().toLowerCase()).indexOf(this.state.filter.toString().toLowerCase()) !== -1
+        )).filter((key) => (
+          this.state.staff_filter === false || (this.state.staff_filter === true && (computer[key]['staff'] === ''))
+        )).sort((a, b) => (
+          a < b
+        )).map((key) => (
           <Item
             key={key}
             id={key}
@@ -77,13 +142,16 @@ class List extends Component {
             program_a={computer[key]['program']}
             model_b={computer[key]['model']}
             brand_c={computer[key]['brand']}
-            borrowed={computer[key]['borrowed']}
             borrowItem={this.borrowItem}
             returnItem={this.returnItem}
             editItem={this.editItem}
             popUp={this.popUp}
           />
         ))
+        if (computerList.length === 0) {
+          computerList = <div className="property property-failure">No Computers Meet Your Criteria</div>
+        }
+
       return (
         <div>
           <div className="ComputerHeader" key="Computerlist">
@@ -109,7 +177,7 @@ class List extends Component {
               Borrow
             </div>
             <div className="property property-button">
-              Delete
+              Edit
             </div>
           </div>
           {computerList}
@@ -119,28 +187,36 @@ class List extends Component {
   }
 
   listCords() {
-        const { cord } = this.props
-        const cordList = !isLoaded(cord)
-          ? 'Loading'
-          : (isEmpty(cord))
-            ? 'Computer list is empty'
-            : Object.keys(cord).map((key) => (
-              <Item
-                key={key}
-                id={key}
-                type={cord[key]['type']}
-                staff={cord[key]['staff']}
-                room_length={cord[key]['room']}
-                program_a={cord[key]['a']}
-                model_b={cord[key]['b']}
-                brand_c={cord[key]['c']}
-                borrowed={cord[key]['borrowed']}
-                borrowItem={this.borrowItem}
-                returnItem={this.returnItem}
-                editItem={this.editItem}
-                popUp={this.popUp}
-              />
-            ))
+    const { cord } = this.props
+    var cordList = !isLoaded(cord)
+      ? 'Loading'
+      : (isEmpty(cord))
+        ? 'No Cords Meet Your Criteria'
+        : Object.keys(cord).filter((key) => (
+          this.state.filter === '' || (key.toString().toLowerCase()).indexOf(this.state.filter.toString().toLowerCase()) !== -1
+        )).filter((key) => (
+          this.state.staff_filter === false || (this.state.staff_filter === true && (cord[key]['staff'] === ''))
+        )).sort((a, b) => (
+          a < b
+        )).map((key) => (
+          <Item
+            key={key}
+            id={key}
+            type={cord[key]['type']}
+            staff={cord[key]['staff']}
+            room_length={cord[key]['room']}
+            program_a={cord[key]['a']}
+            model_b={cord[key]['b']}
+            brand_c={cord[key]['c']}
+            borrowItem={this.borrowItem}
+            returnItem={this.returnItem}
+            editItem={this.editItem}
+            popUp={this.popUp}
+          />
+        ))
+        if (cordList.length === 0) {
+          cordList = <div className="property property-failure">No Cords Meet Your Criteria</div>
+        }
 
       return (
         <div>
@@ -167,7 +243,7 @@ class List extends Component {
               Borrow
             </div>
             <div className="property property-button">
-              Delete
+              Edit
             </div>
           </div>
           {cordList}
@@ -176,9 +252,9 @@ class List extends Component {
       )
   }
 
-  popUp(id, type) {
+  popUp(id, type, kind) {
     if (type === 'borrow' && this.state.show === false) {
-      this.setState({ show: true, id: id, type: type})
+      this.setState({ show: true, id: id, kind: kind})
     } else {
       this.returnItem(id)
     }
@@ -193,7 +269,7 @@ class List extends Component {
     tempItem['returned'] = ''
     tempItem['staff'] = staff
     firebase.set(`/test/${kind}/${id}`, tempItem)
-    this.setState({ show: false})
+    this.setState({ show: false, borrow: false})
   }
 
   returnItem = (id, kind) => {
