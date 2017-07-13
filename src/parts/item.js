@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import '../css/list.css';
+
+import '../css/list.css'
 
 class Item extends Component {
 
@@ -15,8 +16,13 @@ class Item extends Component {
 
   render() {
     var available
-    if (this.props.staff === '' || this.props.staff === undefined || this.props.staff === null) {
+
+    if (this.props.user.level === 'admin') {
+      available = <button className="remove property property-button" onClick={this.editItem}>Edit</button>
+    } else if (this.props.staff === '' || this.props.staff === undefined || this.props.staff === null) {
       available = <button className="remove property property-button" onClick={this.borrowItem}>Borrow</button>
+    } else if (this.props.staff !== (this.props.user.fname+' '+this.props.user.lname)) {
+      available = <button className="remove property property-button" disabled>Checked Out</button>
     } else {
       available = <button className="remove property property-button" onClick={this.returnItem}>Return</button>
     }
@@ -41,7 +47,6 @@ class Item extends Component {
           {this.props.brand_c}
         </div>
         {available}
-        <button className="remove property property-button" onClick={this.editItem}>Edit</button>
       </div>
     )
   }

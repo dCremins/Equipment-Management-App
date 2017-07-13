@@ -120,6 +120,7 @@ class List extends Component {
   }
 
   listComputers() {
+    const { profile } = this.props
     const { computer } = this.props
     var computerList = !isLoaded(computer)
       ? 'Loading'
@@ -141,6 +142,7 @@ class List extends Component {
             program_a={computer[key]['program']}
             model_b={computer[key]['model']}
             brand_c={computer[key]['brand']}
+            user={profile}
             borrowItem={this.borrowItem}
             returnItem={this.returnItem}
             editItem={this.editItem}
@@ -149,6 +151,12 @@ class List extends Component {
         ))
         if (computerList.length === 0) {
           computerList = <div className="property property-failure">No Computers Meet Your Criteria</div>
+        }
+
+        let bored = 'Borrow'
+
+        if (profile.level === 'admin') {
+          bored = 'Edit'
         }
 
       return (
@@ -173,10 +181,7 @@ class List extends Component {
               Brand
             </div>
             <div className="property property-button">
-              Borrow
-            </div>
-            <div className="property property-button">
-              Edit
+              {bored}
             </div>
           </div>
           {computerList}
@@ -186,6 +191,7 @@ class List extends Component {
   }
 
   listCords() {
+    const { profile } = this.props
     const { cord } = this.props
     var cordList = !isLoaded(cord)
       ? 'Loading'
@@ -207,6 +213,7 @@ class List extends Component {
             program_a={cord[key]['a']}
             model_b={cord[key]['b']}
             brand_c={cord[key]['c']}
+            user={profile}
             borrowItem={this.borrowItem}
             returnItem={this.returnItem}
             editItem={this.editItem}
@@ -215,6 +222,12 @@ class List extends Component {
         ))
         if (cordList.length === 0) {
           cordList = <div className="property property-failure">No Cords Meet Your Criteria</div>
+        }
+
+        let bored = 'Borrow'
+
+        if (profile.level === 'admin') {
+          bored = 'Edit'
         }
 
       return (
@@ -239,10 +252,7 @@ class List extends Component {
               C Conn.
             </div>
             <div className="property property-button">
-              Borrow
-            </div>
-            <div className="property property-button">
-              Edit
+              {bored}
             </div>
           </div>
           {cordList}
@@ -261,12 +271,14 @@ class List extends Component {
 
   borrowItem = (id, staff, kind) => {
     const {firebase} = this.props
+    const {profile} = this.props
     let tempItem = this.props[kind][id]
     var d = new Date()
     d = d.toString()
     tempItem['borrowed'] = d
     tempItem['returned'] = ''
-    tempItem['staff'] = staff
+    tempItem['staff'] = (profile.fname+' '+profile.lname)
+    tempItem['room'] = profile.room
     firebase.set(`/test/${kind}/${id}`, tempItem)
     this.setState({ show: false, borrow: false})
   }
@@ -303,8 +315,10 @@ const wrappedTodos = firebaseConnect([
 ])(List)
 
 export default connect(
-  ({ firebase: { auth, data: { computer, cord }} }) => ({
+  ({ firebase: { auth, profile, data: { computer, cord }} }) => ({
     computer,
-    cord
+    cord,
+    auth,
+    profile
   })
 )(wrappedTodos)

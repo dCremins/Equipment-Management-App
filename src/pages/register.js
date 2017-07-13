@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router'
-import {
-  firebaseConnect,
-  isLoaded,
-  isEmpty
-} from 'react-redux-firebase'
+import { firebaseConnect } from 'react-redux-firebase'
 import RegistrationForm from '../parts/registration-form'
 
 import '../css/main.css';
