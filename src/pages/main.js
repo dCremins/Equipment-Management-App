@@ -35,8 +35,7 @@ class Main extends Component {
     if (auth && !auth.uid) {
       return (
         <Redirect to={{
-          pathname: '/',
-          state: { user: profile }
+          pathname: '/login'
         }}/>
       )
     }
