@@ -28,7 +28,7 @@ const renderField = ({
   <div className="inputFields">
     <div className="inputText">
       <label className="inputLabel">{placeholder}</label>
-      {(error && <span className="errors">
+      {touched &&(error && <span className="errors">
       <i className="material-icons">error_outline</i>
       {error}</span>)}
     </div>

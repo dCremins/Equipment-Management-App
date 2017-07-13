@@ -14,6 +14,7 @@ import Main from './pages/main'
 import Add from './pages/add'
 import Edit from './pages/edit'
 import Login from './pages/login'
+import Register from './pages/register'
 
 const history = createHistory()
 
@@ -35,6 +36,7 @@ class App extends Component {
                 <Route location={location} key={location.key}>
                   <Switch>
                     <Route exact path="/login" component={Login} />
+                    <Route exact path="/register" component={Register} />
                     <Route exact path="/" component={Main} />
                     <Route path="/add" component={Add} />
                     <Route path="/edit" component={Edit} />

@@ -31,6 +31,7 @@ class Main extends Component {
   render() {
     const {auth} = this.props
     const {profile} = this.props
+    let add = <div className="pageLink mainLink"></div>
 
     if (auth && !auth.uid) {
       return (
@@ -38,6 +39,14 @@ class Main extends Component {
           pathname: '/login'
         }}/>
       )
+    }
+
+    if (profile.level === 'admin') {
+      add =
+      <div className="pageLink mainLink">
+        <Link to="/add" className="addNew" aria-describedby="tip1">+</Link>
+        <span id="tip1" className="tooltip" role="tooltip" >Add New Equipment</span>
+      </div>
     }
 
     return (
@@ -48,10 +57,7 @@ class Main extends Component {
           <li><a>Option One</a></li>
           <li><a onClick={this.props.firebase.logout}>Log Out</a></li>
         </ul>
-        <div className="pageLink mainLink">
-          <Link to="/add" className="addNew" aria-describedby="tip1">+</Link>
-          <span id="tip1" className="tooltip" role="tooltip" >Add New Equipment</span>
-          </div>
+        {add}
         <div className="mainContainer">
           <h1>Equipment List</h1>
             <List />

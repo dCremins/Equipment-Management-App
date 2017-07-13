@@ -18,6 +18,7 @@ class Login extends Component {
     show: false,
     show2: false,
     error: false,
+    route: false,
     eMessage: '',
     email: '',
     pass: ''
@@ -59,6 +60,9 @@ class Login extends Component {
   button = () => {
     this.setState({show: true})
   }
+  reroute = () => {
+    this.setState({route: true})
+  }
 
 
   render() {
@@ -79,9 +83,14 @@ class Login extends Component {
     }
 
     if (isEmpty(auth)) {
+      let reg = ''
+      if (this.state.route === true) {
+        reg = <Redirect to="/register" />
+      }
 //Allow users to login
       return (
         <div className="main mainPage">
+          {reg}
           <SweetAlert
             show={this.state.show}
             key="email"
@@ -151,6 +160,7 @@ class Login extends Component {
           <div className="mainContainer">
             <span>Login page</span>
             <button onClick={this.button}>Login</button>
+            <button onClick={this.reroute}>Register</button>
           </div>
         </div>
       )
