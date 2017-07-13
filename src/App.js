@@ -13,8 +13,10 @@ import './css/app.css';
 import Main from './pages/main'
 import Add from './pages/add'
 import Edit from './pages/edit'
+import Login from './pages/login'
 
 const history = createHistory()
+
 
 
 class App extends Component {
@@ -32,6 +34,7 @@ class App extends Component {
                 transitionLeaveTimeout={500}>
                 <Route location={location} key={location.key}>
                   <Switch>
+                    <Route exact path="/login" component={Login} />
                     <Route exact path="/" component={Main} />
                     <Route path="/add" component={Add} />
                     <Route path="/edit" component={Edit} />

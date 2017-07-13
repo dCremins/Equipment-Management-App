@@ -6,8 +6,7 @@ import { connect } from 'react-redux'
 import {
   firebaseConnect,
   isLoaded,
-  isEmpty,
-  dataToJS
+  isEmpty
 } from 'react-redux-firebase'
 import Item from '../parts/item'
 
@@ -292,8 +291,6 @@ class List extends Component {
 }
 
 
-
-
 const wrappedTodos = firebaseConnect([
   {
     path: '/test/computer',
@@ -306,8 +303,8 @@ const wrappedTodos = firebaseConnect([
 ])(List)
 
 export default connect(
-  ({firebase}) => ({
-    computer: dataToJS(firebase, '/computer'),
-    cord: dataToJS(firebase, '/cord'),
+  ({ firebase: { auth, data: { computer, cord }} }) => ({
+    computer,
+    cord
   })
 )(wrappedTodos)

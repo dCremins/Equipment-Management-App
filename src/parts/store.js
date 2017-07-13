@@ -1,20 +1,29 @@
 import { createStore, compose } from 'redux'
 import rootReducer from './reducer'
-import { firebase as firebaseConfig } from './config'
 import { reactReduxFirebase } from 'react-redux-firebase'
+import * as firebase from 'firebase'
 
-// react-redux-firebase options
-const config = {
-  userProfile: 'users', // firebase root where user profiles are stored
-  enableLogging: false, // enable/disable Firebase's database logging
-}
+  const config = {
+    userProfile: 'users', // saves user profiles to '/users' on Firebase
+    // here is where you place other config options
+    updateProfileOnLogin: false, // enable/disable updating of profile on login
+    presence: 'presence',
+  }
 
-// Add redux Firebase to compose
-const createStoreWithFirebase = compose(
-  reactReduxFirebase(firebaseConfig, config)
-)(createStore)
+  const fbConfig = {
+    apiKey: "AIzaSyDM-UyJ8n4GACE5ZXgePiTgiM396bZrZ3w",
+    authDomain: "equipment-test-601a4.firebaseapp.com",
+    databaseURL: "https://equipment-test-601a4.firebaseio.com",
+    projectId: "equipment-test-601a4",
+    storageBucket: "equipment-test-601a4.appspot.com",
+    messagingSenderId: "718238201485"
+  }
+  firebase.initializeApp(fbConfig)
 
-// Create store with reducers and initial state
-const store = createStoreWithFirebase(rootReducer)
+  const createStoreWithFirebase = compose(
+    reactReduxFirebase(firebase, config),
+  )(createStore)
+
+  const store = createStoreWithFirebase(rootReducer)
 
 export default store

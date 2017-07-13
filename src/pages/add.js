@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
-import { firebaseConnect } from 'react-redux-firebase'
+import { firebase } from 'react-redux-firebase'
 import SweetAlert from 'sweetalert-react'
 
 import Computer from '../parts/computer'
@@ -146,4 +146,4 @@ class AddNew extends Component {
 }
 
 
-export default firebaseConnect()(AddNew)
+export default firebase()(AddNew)

@@ -11,14 +11,13 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.5",
-    "react-redux-firebase": "^1.4.3",
+    "react-redux-firebase": "canary",
     "react-router-dom": "^4.1.1",
     "react-router-transition": "^0.1.1",
     "react-toolbox": "^2.0.0-beta.12",
     "react-transition-group": "^1.2.0",
     "redux": "^3.7.1",
     "redux-form": "^6.8.0",
-    "redux-react-firebase": "^2.6.1",
     "sweetalert-react": "^0.4.10"
   },
   "devDependencies": {
